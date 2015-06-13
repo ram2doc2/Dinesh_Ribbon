@@ -65,7 +65,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     public void cleartext() {
         jTextField1.setText("");
         jTextField2.setText("");
-        jTextField3.setText("");
+        totalAmountTextField.setText("");
         cleartable();
 
     }
@@ -96,11 +96,15 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        totalAmountTextField = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         CustomerNameComboBox = new javax.swing.JComboBox();
+        totalCostLabel = new javax.swing.JLabel();
+        grossProfitLabel = new javax.swing.JLabel();
+        totalCostTextField = new javax.swing.JTextField();
+        grossProfitTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sales View");
@@ -175,11 +179,11 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sales View", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 0, 24))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 170, -1));
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 150, -1));
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 170, -1));
+        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 150, -1));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("Clear");
@@ -188,24 +192,24 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 535, -1, 30));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("From Date :");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 80, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 80, 20));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("To Date :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 70, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 70, 20));
 
-        ShowButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ShowButton.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         ShowButton.setText("Show");
         ShowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShowButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(ShowButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 80, 30));
+        jPanel2.add(ShowButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -255,25 +259,20 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 700, 360));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 700, 360));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Total Amount :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 120, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 100, 20));
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+        totalAmountTextField.setEditable(false);
+        totalAmountTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        totalAmountTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField3MouseClicked(evt);
+                totalAmountTextFieldMouseClicked(evt);
             }
         });
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 150, 30));
+        jPanel2.add(totalAmountTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 150, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dr/images/calendar_icon1(2).png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -281,7 +280,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 30, 30));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 30, 20));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dr/images/calendar_icon1(2).png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -289,14 +288,31 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 30, 30));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 30, 20));
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Customer Name :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 120, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 120, 20));
 
+        CustomerNameComboBox.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         CustomerNameComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
-        jPanel2.add(CustomerNameComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 200, 30));
+        jPanel2.add(CustomerNameComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, -1));
+
+        totalCostLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        totalCostLabel.setText("Total Cost");
+        jPanel2.add(totalCostLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 100, 20));
+
+        grossProfitLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        grossProfitLabel.setText("Gross Profit :");
+        jPanel2.add(grossProfitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 100, 20));
+
+        totalCostTextField.setEditable(false);
+        totalCostTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(totalCostTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 150, -1));
+
+        grossProfitTextField5.setEditable(false);
+        grossProfitTextField5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(grossProfitTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 150, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -308,7 +324,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +333,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -355,23 +371,9 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         jTextField2.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
-        // TODO add your handling code here:
-        BigDecimal total_amt = new BigDecimal(0);
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-            if (jTable1.getValueAt(i, 0) == null || jTable1.getValueAt(i, 0).equals("")) {
-                break;
-            } else {
-                BigDecimal amt = BigDecimal.valueOf(Double.parseDouble(jTable1.getValueAt(i, 3).toString()));
-
-                total_amt = total_amt.add(amt);
-
-            }
-        }
-
-        jTextField3.setText(String.valueOf(total_amt));
-    }//GEN-LAST:event_jTextField3MouseClicked
+    private void totalAmountTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalAmountTextFieldMouseClicked
+       setAmountCostGrossValue();
+    }//GEN-LAST:event_totalAmountTextFieldMouseClicked
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         // TODO add your handling code here:
@@ -458,7 +460,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
 
 
 
-                jTextField3MouseClicked(null);
+                totalAmountTextFieldMouseClicked(null);;
                 db.dbClose();
             } catch (SQLException sqle) {
                 sqle.printStackTrace();
@@ -473,10 +475,6 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         setVisible(false);
         ss.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
     private void populateCustomerNameComboBox() {
         DatabaseConnection conn = new DatabaseConnection();
         Iterator<String> iterator = conn.getCustomerNameFromSaleDetails().iterator();
@@ -485,6 +483,24 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         }
     }
 
+    private void setAmountCostGrossValue() {
+        BigDecimal total_amt = new BigDecimal(0);
+        BigDecimal total_cost = new BigDecimal(0);
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+            if (jTable1.getValueAt(i, 0) != null || !jTable1.getValueAt(i, 0).equals("")) {
+                BigDecimal amt = BigDecimal.valueOf(Double.parseDouble(jTable1.getValueAt(i, 3).toString()));
+                total_amt = total_amt.add(amt);
+                
+                BigDecimal cost = BigDecimal.valueOf(Double.parseDouble(jTable1.getValueAt(i, 4).toString()));
+                total_cost = total_cost.add(cost);
+            }
+        }
+        totalAmountTextField.setText(String.valueOf(total_amt));
+        totalCostTextField.setText(String.valueOf(total_cost));
+        grossProfitTextField5.setText(String.valueOf(total_amt.subtract(total_cost)));
+    }
+ 
     /**
      * @param args the command line arguments
      */
@@ -522,6 +538,8 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CustomerNameComboBox;
     private javax.swing.JButton ShowButton;
+    private javax.swing.JLabel grossProfitLabel;
+    private javax.swing.JTextField grossProfitTextField5;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -540,7 +558,9 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel scrollLabel;
+    private javax.swing.JTextField totalAmountTextField;
+    private javax.swing.JLabel totalCostLabel;
+    private javax.swing.JTextField totalCostTextField;
     // End of variables declaration//GEN-END:variables
 }

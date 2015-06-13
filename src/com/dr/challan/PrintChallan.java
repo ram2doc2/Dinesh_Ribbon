@@ -281,6 +281,11 @@ public class PrintChallan extends javax.swing.JFrame {
 
         menuButton.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         menuButton.setText("Menu");
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
         mainPanel.add(menuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         printButton.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -381,10 +386,14 @@ public class PrintChallan extends javax.swing.JFrame {
     }//GEN-LAST:event_challanNumberComboBoxActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        MainScreen ss= new MainScreen();
+        menuButtonActionPerformed(null);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        MainScreen ss = new MainScreen();
         setVisible(false);
         ss.setVisible(true);
-    }//GEN-LAST:event_formWindowClosing
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     private void populateChallanNumberComboBox() {
         DatabaseConnection conn = new DatabaseConnection();

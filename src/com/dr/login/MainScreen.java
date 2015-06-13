@@ -673,7 +673,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         jMenuBar1.add(ReportsMenu);
 
         printMenu.setForeground(new java.awt.Color(0, 204, 204));
-        printMenu.setText("Print");
+        printMenu.setText("Print    ");
         printMenu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         printChallanMenuItem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

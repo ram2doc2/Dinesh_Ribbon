@@ -4,8 +4,11 @@
  */
 package com.dr.sales;
 
+import com.dr.challan.PrintChallan;
 import com.dr.login.MainScreen;
 import com.dr.connection.DatabaseConnection;
+import com.dr.cutomerDetails.Add_Customer_entry;
+import com.dr.items.Add_Items;
 import com.dr.utils.Calendarium;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import com.dr.utils.Validation;
+import javax.swing.JTable;
 
 /**
  *
@@ -154,9 +158,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jTextField2.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        jTextField6.setText("");
-        jTextField7.setText("");
-        jTextField8.setText("");
+        totalAmountTextField.setText("");
+        totalCostingTextField.setText("");
+        grossProfitTextField.setText("");
         
         int lastInvNo=db.getLast_Inv_No();
         jTextField3.setText(String.valueOf(++lastInvNo));
@@ -200,9 +204,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        totalAmountTextField = new javax.swing.JTextField();
+        totalCostingTextField = new javax.swing.JTextField();
+        grossProfitTextField = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -210,6 +214,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        addNewCustomerButton = new javax.swing.JButton();
+        addNewItemButton = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sales Invoice");
@@ -380,39 +387,39 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         });
         jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 180, -1));
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+        totalAmountTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        totalAmountTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField6MouseClicked(evt);
+                totalAmountTextFieldMouseClicked(evt);
             }
         });
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        totalAmountTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField6KeyReleased(evt);
+                totalAmountTextFieldKeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 120, -1));
+        jPanel2.add(totalAmountTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 120, -1));
 
-        jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        totalCostingTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        totalCostingTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField7KeyReleased(evt);
+                totalCostingTextFieldKeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 120, -1));
+        jPanel2.add(totalCostingTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 120, -1));
 
-        jTextField8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        grossProfitTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        grossProfitTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                grossProfitTextFieldActionPerformed(evt);
             }
         });
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        grossProfitTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
+                grossProfitTextFieldKeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 120, -1));
+        jPanel2.add(grossProfitTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 120, -1));
 
         jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
@@ -498,6 +505,30 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, -1, -1));
 
+        addNewCustomerButton.setText("Add New Customer");
+        addNewCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewCustomerButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(addNewCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 150, -1));
+
+        addNewItemButton.setText("Add New Item");
+        addNewItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewItemButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(addNewItemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
+
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -548,159 +579,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        boolean Flag=false;
-        String bill_to=jComboBox1.getSelectedItem().toString();
-        String dc_no=jTextField1.getText();
-        String inv_no=jTextField3.getText();
-        String t_amt=jTextField6.getText();
-        String t_costing=jTextField7.getText();
-        String gross_profit=jTextField8.getText();
-        String dc_date=null;
-        String inv_date=null;
-        String due_date=null;
-
-        Date d = new Date();
-        DateFormat df=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String udate= df.format(d);
-
-        if(Flag==false)
-        {
-            if(jComboBox1.getSelectedItem().equals("Select"))
-            {
-                String message = "First Select Bill To: ..";
-                JOptionPane.showMessageDialog(new JFrame(), message,
-                    "WARNING", JOptionPane.WARNING_MESSAGE);
-                Flag = true;
-            }
-        }
-
-        if(Flag==false)
-        {
-            if(jTextField2.getText().equals("") || jTextField2.getText()==null)
-            {
-                String message1 = "Delivery_Challan Date  Should not be left empty!!";
-                JOptionPane.showMessageDialog(new JFrame(), message1,
-                    "Warning", JOptionPane.WARNING_MESSAGE);
-                Flag=true;
-            }
-            
-            if(jTextField4.getText().equals("") || jTextField4.getText()==null)
-            {
-                String message1 = "Invoice_Date  Should not be left empty!!";
-                JOptionPane.showMessageDialog(new JFrame(), message1,
-                    "Warning", JOptionPane.WARNING_MESSAGE);
-                Flag=true;
-            }
-
-        }
+        saveSales();
         
-        if(Flag==false)
-        {
-            String dt=jTextField2.getText().toString();
-            
-            try {
-                Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(dt);
-                 System.out.println(d1);
-                 
-                 DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");
-                 dc_date=df1.format(d1);
-                 System.out.println(dc_date);
-            } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(null,"Invalid Date.\nDate Format should be (dd-MM-yyyy)");
-                Flag=true;
-                //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
- 
-        }
-        
-        if(Flag==false)
-        {
-            
-                String dt=jTextField4.getText().toString();
-
-                try {
-                    Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(dt);
-                     System.out.println(d1);
-
-                     DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");
-                     inv_date=df1.format(d1);
-                     System.out.println(inv_date);
-                } catch (ParseException ex) {
-                    JOptionPane.showMessageDialog(null,"Invalid Date.\nDate Format should be (dd-MM-yyyy)");
-                    Flag=true;
-                    //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-            
-        }
-        
-        if(Flag==false)
-        {
-            if(!(jTextField5.getText().equals("")))
-            {
-                String dt=jTextField5.getText().toString();
-
-                try {
-                    Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(dt);
-                     System.out.println(d1);
-
-                     DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");
-                     due_date=df1.format(d1);
-                     System.out.println(due_date);
-                } catch (ParseException ex) {
-                    JOptionPane.showMessageDialog(null,"Invalid Date.\nDate Format should be (dd-MM-yyyy)");
-                    Flag=true;
-                    //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-            }
-        }
-
-        if(Flag==false)
-        {
-
-            try{
-                db.dbConn();
-                String sql="INSERT INTO sales_details VALUES ('"+bill_to+"','"+dc_no+"','"+dc_date+"','"+inv_no+"','"+inv_date+"','"+due_date+"','"+t_amt+"','"+t_costing+"','"+gross_profit+"','a','"+db.getUser()+"','"+udate+"','','')";
-                System.out.println(sql);
-                int val=db.statement.executeUpdate(sql);
-                db.dbClose();
-                if(val!=0)
-                {
-                    int val1=db.addTable(jTable1, inv_no,"a");
-                    if(val1!=0)
-                    {
-                    String message1 = "Sales Entry Added Successfully.....";
-                    JOptionPane.showMessageDialog(new JFrame(), message1,
-                        "Success", JOptionPane.PLAIN_MESSAGE);
-                    cleartext();
-                    }
-                    else
-                    {
-                        db.dbConn();
-                        String sql1="DELETE FROM sales_details WHERE inv_no='"+inv_no+"'";
-                        System.out.println(sql1);
-                        db.statement.executeUpdate(sql1);
-                        db.dbClose();
-                        String message1 = "Unable to Add Sales Entry.....";
-                        JOptionPane.showMessageDialog(new JFrame(), message1,
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-                else
-                {
-                    String message1 = "Unable to Add Sales Entry.....";
-                    JOptionPane.showMessageDialog(new JFrame(), message1,
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                    
-                }
-                db.dbClose();
-            }catch (SQLException sqle) {
-                sqle.printStackTrace();
-            }
-
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -708,20 +588,20 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         cleartext();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+    private void totalAmountTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalAmountTextFieldKeyReleased
         // TODO add your handling code here:
         //valid.decimalValidator(evt, jTextField6,10,2);
-    }//GEN-LAST:event_jTextField6KeyReleased
+    }//GEN-LAST:event_totalAmountTextFieldKeyReleased
 
-    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
+    private void totalCostingTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalCostingTextFieldKeyReleased
         // TODO add your handling code here:
-        valid.decimalValidator(evt, jTextField7,10,2);
-    }//GEN-LAST:event_jTextField7KeyReleased
+        valid.decimalValidator(evt, totalCostingTextField,10,2);
+    }//GEN-LAST:event_totalCostingTextFieldKeyReleased
 
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+    private void grossProfitTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grossProfitTextFieldKeyReleased
         // TODO add your handling code here:
-        valid.decimalValidator(evt, jTextField8,10,2);
-    }//GEN-LAST:event_jTextField8KeyReleased
+        valid.decimalValidator(evt, grossProfitTextField,10,2);
+    }//GEN-LAST:event_grossProfitTextFieldKeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -780,7 +660,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
     }//GEN-LAST:event_jTable1KeyReleased
 
-    private void jTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField6MouseClicked
+    private void totalAmountTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalAmountTextFieldMouseClicked
         // TODO add your handling code here:
         jTable1.editCellAt(0,0);
         double total_amt=0;
@@ -794,6 +674,13 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
             }
             else
             {
+               /* String qntyVal = String.valueOf(jTable1.getValueAt(i, 5));
+                if (qntyVal.equals("null") || qntyVal.equals("") || qntyVal.isEmpty()) {
+                    String message1 = "Enter quantity for Sr.No " + (i + 1) + ", then press tab";
+                    JOptionPane.showMessageDialog(new JFrame(), message1,
+                            "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }*/
                 double amt=Double.parseDouble(jTable1.getValueAt(i, 6).toString());
                 double costing=Double.parseDouble(jTable1.getValueAt(i, 7).toString());
                 total_amt=total_amt+amt;
@@ -802,11 +689,11 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
         
         double gross_profit=total_amt-total_costing;
-        jTextField6.setText(String.valueOf(total_amt));
-        jTextField7.setText(String.valueOf(total_costing));
-        jTextField8.setText(String.valueOf(gross_profit));
+        totalAmountTextField.setText(String.valueOf(total_amt));
+        totalCostingTextField.setText(String.valueOf(total_costing));
+        grossProfitTextField.setText(String.valueOf(gross_profit));
         
-    }//GEN-LAST:event_jTextField6MouseClicked
+    }//GEN-LAST:event_totalAmountTextFieldMouseClicked
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
         // TODO add your handling code here:
@@ -831,10 +718,199 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         ss.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void grossProfitTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grossProfitTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_grossProfitTextFieldActionPerformed
 
+    private void addNewCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCustomerButtonActionPerformed
+        // TODO add your handling code here:
+        Add_Customer_entry customer_entry = new Add_Customer_entry();
+        this.setVisible(false);
+        customer_entry.setVisible(true);
+    }//GEN-LAST:event_addNewCustomerButtonActionPerformed
+
+    private void addNewItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewItemButtonActionPerformed
+        // TODO add your handling code here:
+        Add_Items add_Items = new Add_Items();
+        this.setVisible(false);
+        add_Items.setVisible(true);
+    }//GEN-LAST:event_addNewItemButtonActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        // TODO add your handling code here:
+        boolean print = true;
+        if (!isItemTableEmpty(jTable1, 3)) {
+            int val = JOptionPane.showOptionDialog(null, "Do you want save this current invoice", "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            if (val == 0) {
+                boolean saved = saveSales();
+                if (!saved) {
+                    print = false;
+                }
+            }
+        }
+        if (print) {
+            PrintChallan printChallan = new PrintChallan();
+            this.setVisible(false);
+            printChallan.setVisible(true);
+        }
+    }//GEN-LAST:event_printButtonActionPerformed
+
+    private boolean isItemTableEmpty(JTable jTable, int atColumnIndex) {
+        boolean result = true;
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+            String value = String.valueOf(jTable.getValueAt(i, atColumnIndex - 1));
+            if (!(value == null || value.equals("null") || value.trim().isEmpty())) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+    
+    private boolean saveSales() {
+        boolean flag = true;
+        String bill_to = jComboBox1.getSelectedItem().toString();
+        String dc_no = jTextField1.getText();
+        String inv_no = jTextField3.getText();
+        String t_amt = totalAmountTextField.getText();
+        String t_costing = totalCostingTextField.getText();
+        String gross_profit = grossProfitTextField.getText();
+        String dc_date = null;
+        String inv_date = null;
+        String due_date = null;
+
+        Date d = new Date();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String udate = df.format(d);
+
+        if (flag) {
+            if (jComboBox1.getSelectedItem().equals("Select")) {
+                String message = "First Select Bill To: ..";
+                JOptionPane.showMessageDialog(new JFrame(), message,
+                        "WARNING", JOptionPane.WARNING_MESSAGE);
+                flag = false;
+            }
+        }
+
+        if (flag) {
+            if (jTextField2.getText().equals("") || jTextField2.getText() == null) {
+                String message1 = "Delivery_Challan Date  Should not be left empty!!";
+                JOptionPane.showMessageDialog(new JFrame(), message1,
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+                flag = false;
+            }
+        }
+
+        if(flag) {
+            if (jTextField4.getText().equals("") || jTextField4.getText() == null) {
+                String message1 = "Invoice_Date  Should not be left empty!!";
+                JOptionPane.showMessageDialog(new JFrame(), message1,
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+                flag = false;
+            }
+        }
+        
+        if (flag) {
+            String dt = jTextField2.getText().toString();
+
+            try {
+                Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
+                System.out.println(d1);
+
+                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+                dc_date = df1.format(d1);
+                System.out.println(dc_date);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid Date.\nDate Format should be (dd-MM-yyyy)");
+                flag = false;
+                //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }
+
+        if (flag) {
+
+            String dt = jTextField4.getText().toString();
+
+            try {
+                Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
+                System.out.println(d1);
+
+                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+                inv_date = df1.format(d1);
+                System.out.println(inv_date);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid Date.\nDate Format should be (dd-MM-yyyy)");
+                flag = false;
+                //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }
+
+        if (flag) {
+            if (!(jTextField5.getText().equals(""))) {
+                String dt = jTextField5.getText().toString();
+
+                try {
+                    Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
+                    System.out.println(d1);
+
+                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+                    due_date = df1.format(d1);
+                    System.out.println(due_date);
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid Date.\nDate Format should be (dd-MM-yyyy)");
+                    flag = false;
+                    //Logger.getLogger(Amount_paid.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        }
+        
+        if(flag && totalAmountTextField.getText().equals("")) {
+            totalAmountTextFieldMouseClicked(null);
+        }
+
+        if (flag) {
+
+            try {
+                db.dbConn();
+                String sql = "INSERT INTO sales_details VALUES ('" + bill_to + "','" + dc_no + "','" + dc_date + "','" + inv_no + "','" + inv_date + "','" + due_date + "','" + t_amt + "','" + t_costing + "','" + gross_profit + "','a','" + db.getUser() + "','" + udate + "','','')";
+                System.out.println(sql);
+                int val = db.statement.executeUpdate(sql);
+                db.dbClose();
+                if (val != 0) {
+                    int val1 = db.addTable(jTable1, inv_no, "a");
+                    if (val1 != 0) {
+                        String message1 = "Sales Entry Added Successfully.....";
+                        JOptionPane.showMessageDialog(new JFrame(), message1,
+                                "Success", JOptionPane.PLAIN_MESSAGE);
+                        cleartext();
+                    } else {
+                        db.dbConn();
+                        String sql1 = "DELETE FROM sales_details WHERE inv_no='" + inv_no + "'";
+                        System.out.println(sql1);
+                        db.statement.executeUpdate(sql1);
+                        db.dbClose();
+                        String message1 = "Unable to Add Sales Entry.....";
+                        JOptionPane.showMessageDialog(new JFrame(), message1,
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    String message1 = "Unable to Add Sales Entry.....";
+                    JOptionPane.showMessageDialog(new JFrame(), message1,
+                            "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+                db.dbClose();
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+        }
+        return flag;
+    }
     /**
      * @param args the command line arguments
      */
@@ -870,6 +946,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addNewCustomerButton;
+    private javax.swing.JButton addNewItemButton;
+    private javax.swing.JTextField grossProfitTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -900,9 +979,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton printButton;
     private javax.swing.JLabel scrollLabel;
+    private javax.swing.JTextField totalAmountTextField;
+    private javax.swing.JTextField totalCostingTextField;
     // End of variables declaration//GEN-END:variables
 }
