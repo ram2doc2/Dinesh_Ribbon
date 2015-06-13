@@ -75,7 +75,7 @@ public class PrintChallan extends javax.swing.JFrame {
         menuButton = new javax.swing.JButton();
         printButton = new javax.swing.JButton();
         Mobile1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        Mobile2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -91,7 +91,7 @@ public class PrintChallan extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         separatorBelowName.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 600, 10));
+        mainPanel.add(separatorBelowName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 590, -1));
 
         namePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -106,10 +106,10 @@ public class PrintChallan extends javax.swing.JFrame {
         mainPanel.add(namePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 330, 40));
 
         separatorBelowItemTable.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowItemTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 338, 600, -1));
+        mainPanel.add(separatorBelowItemTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 600, -1));
 
         separatorBelowChallanLabel.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowChallanLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, -1));
+        mainPanel.add(separatorBelowChallanLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 590, -1));
 
         challanAndDatePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -185,10 +185,10 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        mainPanel.add(challanAndDatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 570, 40));
+        mainPanel.add(challanAndDatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 570, 40));
 
         separatorBelowChallanAndDate.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowChallanAndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 600, 10));
+        mainPanel.add(separatorBelowChallanAndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 590, -1));
 
         itemTablePanel.setBackground(new java.awt.Color(255, 255, 255));
         itemTablePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -211,7 +211,7 @@ public class PrintChallan extends javax.swing.JFrame {
 
         itemTablePanel.add(itemTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 190));
 
-        mainPanel.add(itemTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 570, 190));
+        mainPanel.add(itemTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 570, 200));
 
         recievedByPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -230,11 +230,6 @@ public class PrintChallan extends javax.swing.JFrame {
 
         totalAmountTextField.setEditable(false);
         totalAmountTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        totalAmountTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalAmountTextFieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout recievedByPanelLayout = new javax.swing.GroupLayout(recievedByPanel);
         recievedByPanel.setLayout(recievedByPanelLayout);
@@ -273,16 +268,16 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        mainPanel.add(recievedByPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 570, 30));
+        mainPanel.add(recievedByPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 570, 30));
 
         salesChallanLabelPanel.setBackground(new java.awt.Color(255, 255, 255));
         salesChallanLabelPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SalesChallenLabel.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         SalesChallenLabel.setText("SALES CHALLAN");
-        salesChallanLabelPanel.add(SalesChallenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        salesChallanLabelPanel.add(SalesChallenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, 10));
 
-        mainPanel.add(salesChallanLabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 570, 30));
+        mainPanel.add(salesChallanLabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 570, 10));
 
         menuButton.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         menuButton.setText("Menu");
@@ -306,9 +301,9 @@ public class PrintChallan extends javax.swing.JFrame {
         Mobile1.setText("Anjesh : 09227456635 ");
         mainPanel.add(Mobile1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel1.setText(" Dinesh : 9228414858");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
+        Mobile2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Mobile2.setText(" Dinesh : 9228414858");
+        mainPanel.add(Mobile2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -318,7 +313,7 @@ public class PrintChallan extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
         );
 
         pack();
@@ -391,10 +386,6 @@ public class PrintChallan extends javax.swing.JFrame {
         ss.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
-    private void totalAmountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalAmountTextFieldActionPerformed
-
     private void populateChallanNumberComboBox() {
         DatabaseConnection conn = new DatabaseConnection();
         Iterator<String> iterator = conn.getInvoiceNo().iterator();
@@ -442,6 +433,7 @@ public class PrintChallan extends javax.swing.JFrame {
     private javax.swing.JLabel Adress1;
     private javax.swing.JLabel ChallanOwnerName;
     private javax.swing.JLabel Mobile1;
+    private javax.swing.JLabel Mobile2;
     private javax.swing.JLabel SalesChallenLabel;
     private javax.swing.JPanel challanAndDatePanel;
     private javax.swing.JLabel challanLabel;
@@ -452,7 +444,6 @@ public class PrintChallan extends javax.swing.JFrame {
     private javax.swing.JTable itemTable;
     private javax.swing.JPanel itemTablePanel;
     private javax.swing.JScrollPane itemTableScrollPane;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton menuButton;
     private javax.swing.JLabel mrLabel;

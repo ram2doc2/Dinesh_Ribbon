@@ -324,7 +324,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
 
         UnitButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         UnitButton.setForeground(new java.awt.Color(0, 153, 153));
-        UnitButton.setText("Amoount Received");
+        UnitButton.setText("Amount Received");
         UnitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UnitButtonActionPerformed(evt);
@@ -422,8 +422,8 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
 
         image.setBackground(new java.awt.Color(0, 204, 204));
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dr/images/DINESH LOGO.jpg"))); // NOI18N
+        jDesktopPane1.add(image);
         image.setBounds(10, 0, 270, 270);
-        jDesktopPane1.add(image, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 102));
 

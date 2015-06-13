@@ -272,8 +272,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(scrollLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrollLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +337,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("Clear");
@@ -346,7 +346,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, -1, -1));
 
         jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -362,15 +362,15 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Total Amount :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 130, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 90, 20));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText("Total Costing :");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 130, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 90, 20));
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Gross Profit :");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 130, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 90, 20));
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -391,7 +391,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 jTextField6KeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 180, -1));
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 120, -1));
 
         jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -399,15 +399,20 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 jTextField7KeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 180, -1));
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 120, -1));
 
         jTextField8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField8KeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 180, -1));
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 120, -1));
 
         jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
@@ -425,14 +430,18 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 {"3", null, null, null, null, null, null, null},
                 {"4", null, null, null, null, null, null, null},
                 {"5", null, null, null, null, null, null, null},
-                {"6", null, null, null, null, null, null, null}
+                {"6", null, null, null, null, null, null, null},
+                {"7", "", null, null, null, null, null, null},
+                {"8", null, null, null, null, null, null, null},
+                {"9", null, null, null, null, null, null, null},
+                {"10", null, null, null, null, null, null, null}
             },
             new String [] {
                 "Sr No.", "Description", "Cost/mt", "Cut (mt)", "Rate/mt", "Quantity", "Amount", "Costing"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
+                false, true, true, true, true, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -449,11 +458,13 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
             }
         });
         jScrollPane2.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        }
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 670, 160));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 670, 230));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/dr/images/calendar_icon1(2).png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -485,7 +496,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, -1, -1));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -506,8 +517,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -519,7 +530,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -744,31 +755,28 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         int col=jTable1.getSelectedColumn();
         if(col==6 && row>=0)
         {
-            switch(evt.getKeyCode())
-                     {
-                       case KeyEvent.VK_TAB: System.out.println("Tab Key Event performed");
-                                             if(jTable1.getValueAt(row,5)==null || jTable1.getValueAt(row, 5).equals(""))
-                                             {
-                                                 
-                                             }
-                                             else
-                                             {
-                                                 double cost_per_mt= Double.parseDouble(jTable1.getValueAt(row,2).toString());
-                                                 double cut= Double.parseDouble(jTable1.getValueAt(row,3).toString());
-                                                 double rate_per_mt=Double.parseDouble(jTable1.getValueAt(row,4).toString());
-                                                 double qnty=Double.parseDouble(jTable1.getValueAt(row,5).toString());
-                                                 System.out.println("Cost_per_mt="+cost_per_mt+"\tCut="+cut+"\trate_per_mt="+rate_per_mt+"\tqnty"+qnty);
-                                                 
-                                                 double amount=Math.floor(cut*rate_per_mt*qnty);
-                                                 System.out.println("amount="+amount);
-                                                 jTable1.setValueAt(amount, row,6);
-                                                 
-                                                 double costing=Math.floor(cut*cost_per_mt*qnty);
-                                                 System.out.println("costing="+costing);
-                                                 jTable1.setValueAt(costing, row,7);
-                                             }
-                                             break;
-                     }
+            switch (evt.getKeyCode()) {
+                case KeyEvent.VK_TAB:
+                    System.out.println("Tab Key Event performed");
+                    if (jTable1.getValueAt(row, 5) == null || jTable1.getValueAt(row, 5).equals("")) {
+
+                    } else {
+                        double cost_per_mt = Double.parseDouble(jTable1.getValueAt(row, 2).toString());
+                        double cut = Double.parseDouble(jTable1.getValueAt(row, 3).toString());
+                        double rate_per_mt = Double.parseDouble(jTable1.getValueAt(row, 4).toString());
+                        double qnty = Double.parseDouble(jTable1.getValueAt(row, 5).toString());
+                        System.out.println("Cost_per_mt=" + cost_per_mt + "\tCut=" + cut + "\trate_per_mt=" + rate_per_mt + "\tqnty" + qnty);
+
+                        double amount = Math.floor(cut * rate_per_mt * qnty);
+                        System.out.println("amount=" + amount);
+                        jTable1.setValueAt(amount, row, 6);
+
+                        double costing = Math.floor(cut * cost_per_mt * qnty);
+                        System.out.println("costing=" + costing);
+                        jTable1.setValueAt(costing, row, 7);
+                    }
+                    break;
+            }
         }
     }//GEN-LAST:event_jTable1KeyReleased
 
@@ -822,6 +830,10 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         setVisible(false);
         ss.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
 
     /**
      * @param args the command line arguments

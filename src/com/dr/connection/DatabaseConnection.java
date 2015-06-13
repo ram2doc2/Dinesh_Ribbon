@@ -569,7 +569,7 @@ public class DatabaseConnection {
     public ResultSet getItemIableByInvoiceNo(String invoiceNo) {
          ResultSet resultSet = null;
         try {
-            String SQLStatement = "Select sr_no As 'Sr.No',description AS 'Description(Design No.)',cut AS 'cut(mt)',qnty AS 'Quantiy(Rolls)',rate AS 'Rate(per mt)',(cut*qnty*rate) AS 'Amount(Rs.)' from sales_items where inv_no='"+invoiceNo+"'";
+            String SQLStatement = "Select sr_no As 'Sr.No',description AS 'Description(Design No.)',cut AS 'cut(mt)',qnty AS 'Quantiy(Rolls)',rate AS 'Rate(per mt)',CAST((cut*qnty*rate) AS decimal(12,2)) 'Amount(Rs.)' from sales_items where inv_no='"+invoiceNo+"'";
             dbConn();
             resultSet = statement.executeQuery(SQLStatement);
         } catch (SQLException sqle) {
