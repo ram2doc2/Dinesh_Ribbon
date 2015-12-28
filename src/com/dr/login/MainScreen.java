@@ -25,9 +25,10 @@ import com.dr.purchase.Delete_purchase;
 import com.dr.sales.Delete_sales;
 import com.dr.purchase.Show_purchase;
 import com.dr.sales.Show_sales;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -753,7 +754,24 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
         setVisible(false);
         new Login().setVisible(true);
+        processBackup();
     }//GEN-LAST:event_logOutMouseClicked
+
+    private void processBackup() throws HeadlessException {
+        String message = "Your Backup is fail! Contact administration/Ram";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        dbConn.dbConn();
+        try {
+            dbConn.backupDatabase();
+        } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), message + ex.getMessage(), "Warning!",
+                    JOptionPane.WARNING_MESSAGE);
+        } catch(IOException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), message + ex.getMessage(), "Warning!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        dbConn.dbClose();
+    }
 
     private void ItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemsButtonActionPerformed
         // TODO add your handling code here:
@@ -831,6 +849,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         String message = "Are you sure, you want to exit";
         int exit = JOptionPane.showConfirmDialog(null, message, "Warning", JOptionPane.YES_NO_OPTION);
         if(exit == 0) {
+            processBackup();
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
     }//GEN-LAST:event_formWindowClosing

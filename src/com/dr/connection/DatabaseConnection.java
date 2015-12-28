@@ -34,13 +34,16 @@ public class DatabaseConnection {
     private String URL = null;
     private String USER = null;
     private String PASS = null;
+    private String DATABASE_NAME = null;
+    private String MYSQL_MYSQLDUMP_PATH = null;
     //Ram Doctor
     private Connection connection = null;
     public Statement statement = null;
     private MainScreen rm = new MainScreen();
     private static boolean status;
     private static String userType;
-    private static String CONFIG_FILE_LOCATION = "d:\\config\\config.properties";
+    private static final String CONFIG_FILE_LOCATION = "d:\\config\\";
+    private static final String CONFIG_FILE = CONFIG_FILE_LOCATION + "config.properties";
     //login user variable
     private static String user_name;
     SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -51,9 +54,9 @@ public class DatabaseConnection {
         try {
             Properties prop = new Properties();
             try {
-                prop.load(new FileInputStream(CONFIG_FILE_LOCATION));
+                prop.load(new FileInputStream(CONFIG_FILE));
             } catch (FileNotFoundException fnfe) {
-                String message = "Configuration file not found " + CONFIG_FILE_LOCATION;
+                String message = "Configuration file not found " + CONFIG_FILE;
                 JOptionPane.showMessageDialog(new JFrame(), message, "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } catch (IOException ie) {
@@ -65,6 +68,8 @@ public class DatabaseConnection {
             URL = prop.getProperty("database");
             USER = prop.getProperty("dbuser");
             PASS = prop.getProperty("dbpassword");
+            DATABASE_NAME = prop.getProperty("database_name");
+            MYSQL_MYSQLDUMP_PATH = prop.getProperty("mysqldump_path");
             Class.forName(driver);
             connection = DriverManager.getConnection(URL, USER, PASS);
             statement = connection.createStatement();
@@ -214,6 +219,12 @@ public class DatabaseConnection {
         }
     }
 
+    public void backupDatabase() throws InterruptedException, IOException {
+        String executeCmd = MYSQL_MYSQLDUMP_PATH + " -u " + USER + " -p" + PASS + " " + DATABASE_NAME + " -r " + CONFIG_FILE_LOCATION + "backup.sql";
+        Process runtimeProcess = null;
+        runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+        runtimeProcess.waitFor();
+    }
     public void adminChange(String userName, String currentPassword, String newPassword, String userType, JPasswordField pas1, JPasswordField pas2) throws SQLException {
         // if(getStatus() == true)
         //  {
