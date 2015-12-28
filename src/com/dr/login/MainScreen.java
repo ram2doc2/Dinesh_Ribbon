@@ -27,6 +27,7 @@ import com.dr.purchase.Show_purchase;
 import com.dr.sales.Show_sales;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -200,7 +201,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("DInesh Ribbons");
+        setTitle("Dinesh Ribbons");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -233,7 +234,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -827,9 +828,11 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        String message = "Please Logged out first..";
-        JOptionPane.showMessageDialog(new JFrame(), message,
-            "Warning", JOptionPane.WARNING_MESSAGE);
+        String message = "Are you sure, you want to exit";
+        int exit = JOptionPane.showConfirmDialog(null, message, "Warning", JOptionPane.YES_NO_OPTION);
+        if(exit == 0) {
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void PurchaseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PurchaseOrderActionPerformed
