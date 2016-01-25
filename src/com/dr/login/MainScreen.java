@@ -167,6 +167,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         jPanel7 = new javax.swing.JPanel();
         scrollLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        backUpAndLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MasterMenu = new javax.swing.JMenu();
         Customer = new javax.swing.JMenuItem();
@@ -260,9 +261,9 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         logout.setForeground(new java.awt.Color(0, 204, 204));
         logout.setText("LogOut");
         logout.setToolTipText("Close");
-        logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logOutMouseClicked(evt);
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -452,6 +453,16 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Dinesh Ribbons");
 
+        backUpAndLogout.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        backUpAndLogout.setForeground(new java.awt.Color(0, 204, 204));
+        backUpAndLogout.setText("Backup & Logout");
+        backUpAndLogout.setToolTipText("Close");
+        backUpAndLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backUpAndLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -464,12 +475,15 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(welcomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(404, 404, 404)
-                                .addComponent(logout))
+                                .addGap(292, 292, 292)
+                                .addComponent(backUpAndLogout)
+                                .addGap(27, 27, 27)
+                                .addComponent(logout)
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -485,7 +499,9 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(welcomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backUpAndLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -751,14 +767,8 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
         cp.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
-        setVisible(false);
-        new Login().setVisible(true);
-        processBackup();
-    }//GEN-LAST:event_logOutMouseClicked
-
     private void processBackup() throws HeadlessException {
-        String message = "Your Backup is fail! Contact administration/Ram";
+        String message = "Your Backup is fail! Contact administration/Ram.\n";
         DatabaseConnection dbConn = new DatabaseConnection();
         dbConn.dbConn();
         try {
@@ -905,6 +915,16 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
        printChallan.setVisible(true);
     }//GEN-LAST:event_printChallanMenuItemActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void backUpAndLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpAndLogoutActionPerformed
+        logoutActionPerformed(null);
+        processBackup();
+    }//GEN-LAST:event_backUpAndLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -941,6 +961,7 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JMenu TransactionMenu;
     private javax.swing.JMenuItem Unit;
     private javax.swing.JButton UnitButton;
+    private javax.swing.JButton backUpAndLogout;
     private javax.swing.JMenu changePassword;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JLabel image;
