@@ -48,6 +48,10 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         timer.start();
         setLocationRelativeTo(null);
         
+        grossProfitLabel.setVisible(false);
+        grossProfitTextField.setVisible(false);
+        totalCostingLabel.setVisible(false);
+        totalCostingTextField.setVisible(false);
         int lastInvNo=db.getLast_Inv_No();
         jTextField3.setText(String.valueOf(++lastInvNo));
         
@@ -201,8 +205,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jTextField4 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        totalCostingLabel = new javax.swing.JLabel();
+        grossProfitLabel = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         totalAmountTextField = new javax.swing.JTextField();
         totalCostingTextField = new javax.swing.JTextField();
@@ -371,13 +375,13 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jLabel9.setText("Total Amount :");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 90, 20));
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("Total Costing :");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 90, 20));
+        totalCostingLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        totalCostingLabel.setText("Total Costing :");
+        jPanel2.add(totalCostingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 90, 20));
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel11.setText("Gross Profit :");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 90, 20));
+        grossProfitLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        grossProfitLabel.setText("Gross Profit :");
+        jPanel2.add(grossProfitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 90, 20));
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -444,7 +448,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
                 {"10", null, null, null, null, null, null, null}
             },
             new String [] {
-                "Sr No.", "Description", "Cost/mt", "Cut (mt)", "Rate/mt", "Quantity", "Amount", "Costing"
+                "Sr No.", "Description", "Yarn/mt", "Cut (mt)", "Rate/mt", "Quantity", "Amount", "Yarn"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -948,6 +952,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewCustomerButton;
     private javax.swing.JButton addNewItemButton;
+    private javax.swing.JLabel grossProfitLabel;
     private javax.swing.JTextField grossProfitTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -957,8 +962,6 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -982,6 +985,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton printButton;
     private javax.swing.JLabel scrollLabel;
     private javax.swing.JTextField totalAmountTextField;
+    private javax.swing.JLabel totalCostingLabel;
     private javax.swing.JTextField totalCostingTextField;
     // End of variables declaration//GEN-END:variables
 }

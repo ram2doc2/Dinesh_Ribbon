@@ -387,7 +387,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="totalCostingLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="14" style="0"/>
@@ -400,7 +400,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
+            <Component class="javax.swing.JLabel" name="grossProfitLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="14" style="0"/>
@@ -548,12 +548,12 @@
                           <Data value="null"/>
                           <Data value="null"/>
                         </Column>
-                        <Column editable="true" title="Cost/mt" type="java.lang.Object"/>
+                        <Column editable="true" title="Yarn/mt" type="java.lang.Object"/>
                         <Column editable="true" title="Cut (mt)" type="java.lang.Object"/>
                         <Column editable="true" title="Rate/mt" type="java.lang.Object"/>
                         <Column editable="true" title="Quantity" type="java.lang.Object"/>
                         <Column editable="false" title="Amount" type="java.lang.Object"/>
-                        <Column editable="true" title="Costing" type="java.lang.Object"/>
+                        <Column editable="true" title="Yarn" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

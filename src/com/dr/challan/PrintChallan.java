@@ -92,7 +92,7 @@ public class PrintChallan extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         separatorBelowName.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 580, -1));
+        mainPanel.add(separatorBelowName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 560, -1));
 
         namePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -104,13 +104,13 @@ public class PrintChallan extends javax.swing.JFrame {
         Adress1.setText("6/6 Khatodra industrial Soc., Behind Sub-Jail, Ring Road, SURAT");
         namePanel.add(Adress1);
 
-        mainPanel.add(namePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 330, 40));
+        mainPanel.add(namePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 320, 40));
 
         separatorBelowItemTable.setForeground(new java.awt.Color(0, 0, 0));
         mainPanel.add(separatorBelowItemTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 600, -1));
 
         separatorBelowChallanLabel.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanel.add(separatorBelowChallanLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 580, -1));
+        mainPanel.add(separatorBelowChallanLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 560, -1));
 
         challanAndDatePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -159,11 +159,10 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addComponent(challanNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(separatorSideChallanName, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dateLabel)
                 .addGap(2, 2, 2)
-                .addComponent(dateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(dateLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
         );
         challanAndDatePanelLayout.setVerticalGroup(
             challanAndDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +185,7 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        mainPanel.add(challanAndDatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 560, 40));
+        mainPanel.add(challanAndDatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 550, 40));
 
         separatorBelowChallanAndDate.setForeground(new java.awt.Color(0, 0, 0));
         mainPanel.add(separatorBelowChallanAndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 580, -1));
@@ -210,9 +209,9 @@ public class PrintChallan extends javax.swing.JFrame {
         ));
         itemTableScrollPane.setViewportView(itemTable);
 
-        itemTablePanel.add(itemTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 190));
+        itemTablePanel.add(itemTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 190));
 
-        mainPanel.add(itemTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 560, 200));
+        mainPanel.add(itemTablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 550, 200));
 
         recievedByPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -247,7 +246,7 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(totalAmountLabel)
                 .addGap(6, 6, 6)
-                .addComponent(totalAmountTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(totalAmountTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addContainerGap())
         );
         recievedByPanelLayout.setVerticalGroup(
@@ -270,7 +269,7 @@ public class PrintChallan extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        mainPanel.add(recievedByPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 560, 30));
+        mainPanel.add(recievedByPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 550, 30));
 
         salesChallanLabelPanel.setBackground(new java.awt.Color(255, 255, 255));
         salesChallanLabelPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -279,7 +278,7 @@ public class PrintChallan extends javax.swing.JFrame {
         SalesChallenLabel.setText("SALES CHALLAN");
         salesChallanLabelPanel.add(SalesChallenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, 10));
 
-        mainPanel.add(salesChallanLabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 560, 10));
+        mainPanel.add(salesChallanLabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 550, 10));
 
         menuButton.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         menuButton.setText("Menu");
@@ -310,15 +309,13 @@ public class PrintChallan extends javax.swing.JFrame {
 
         Mobile2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         Mobile2.setText(" Dinesh : 9228414858");
-        mainPanel.add(Mobile2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
+        mainPanel.add(Mobile2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 566, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
