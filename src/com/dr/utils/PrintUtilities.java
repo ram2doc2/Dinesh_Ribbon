@@ -52,6 +52,10 @@ public class PrintUtilities implements Printable {
       return(NO_SUCH_PAGE);
     } else {
       Graphics2D g2d = (Graphics2D)g;
+      double factorX = pageFormat.getImageableWidth() / componentToBePrinted.getWidth();
+      double factorY = pageFormat.getImageableHeight() / componentToBePrinted.getHeight();
+      double factor = Math.min( factorX, factorY );
+      g2d.scale(factor,factor);
       g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
       disableDoubleBuffering(componentToBePrinted);
       componentToBePrinted.paint(g2d);
