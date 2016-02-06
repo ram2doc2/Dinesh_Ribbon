@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -357,13 +358,15 @@ public class PrintChallan extends javax.swing.JFrame {
     private void challanNumberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_challanNumberComboBoxActionPerformed
        DatabaseConnection conn = new DatabaseConnection();
         String customerName = "";
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String date = dateFormat.format(new Date());
+        DateFormat databaseFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat showFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = new Date().toString();
         ResultSet salesDetailsResultSet = conn.getSalesDetailsByInvoiceNo(challanNumberComboBox.getSelectedItem().toString());
         if(salesDetailsResultSet != null) {
             try {
                 while(salesDetailsResultSet.next()) {
                     customerName = salesDetailsResultSet.getString("bill_to");
+                    date = salesDetailsResultSet.getString("Inv_date");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(PrintChallan.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,8 +375,13 @@ public class PrintChallan extends javax.swing.JFrame {
                 conn.dbClose();
             }
         }
+        
         customerNameTextField.setText(customerName);
-        dateTextField.setText(date);
+        try {
+            dateTextField.setText(showFormat.format(databaseFormat.parse(date)));
+        } catch (ParseException ex) {
+            Logger.getLogger(PrintChallan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         challanNoTextField.setText(challanNumberComboBox.getSelectedItem().toString());
         ResultSet salesItemsResultSet = conn.getItemIableByInvoiceNo(challanNumberComboBox.getSelectedItem().toString());
         itemTable.setModel(DbUtils.resultSetToTableModel(salesItemsResultSet));
