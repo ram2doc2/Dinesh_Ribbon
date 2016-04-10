@@ -10,6 +10,7 @@ import com.dr.connection.DatabaseConnection;
 import com.dr.cutomerDetails.Add_Customer_entry;
 import com.dr.items.Add_Items;
 import com.dr.utils.Calendarium;
+import com.dr.utils.Utilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -26,6 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import com.dr.utils.Validation;
+import java.util.Calendar;
 import javax.swing.JTable;
 
 /**
@@ -52,12 +54,16 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         grossProfitTextField.setVisible(false);
         totalCostingLabel.setVisible(false);
         totalCostingTextField.setVisible(false);
-        int lastInvNo=db.getLast_Inv_No();
-        jTextField3.setText(String.valueOf(++lastInvNo));
         
-        int lastdcNo=db.getLast_dc_No();
-        jTextField1.setText(String.valueOf(++lastdcNo));
+        int dcNo  = db.getLastChallanNo();
+        Calendar cal = Calendar.getInstance();
+        if(cal.get(Calendar.MONTH) == 3 && cal.get(Calendar.DATE) < 10 && dcNo > 60) {
+            challanNoTextField.setText("1");
+        } else {
+            challanNoTextField.setText(dcNo + 1 + "");
+        }
         
+        setCurrentDateToAllDatesFields();
         
         Iterator<String> iterator = db.getBuyerName().iterator();
 		while (iterator.hasNext()) {
@@ -159,21 +165,23 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     public void cleartext()
     {
         jComboBox1.setSelectedIndex(0);
-        jTextField2.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
+        deliveryDateTextField.setText("");
+        challanDateTextField.setText("");
+        paymentDueDateTextField.setText("");
         totalAmountTextField.setText("");
         totalCostingTextField.setText("");
         grossProfitTextField.setText("");
         
-        int lastInvNo=db.getLast_Inv_No();
-        jTextField3.setText(String.valueOf(++lastInvNo));
-        
-        int lastdcNo=db.getLast_dc_No();
-        jTextField1.setText(String.valueOf(++lastdcNo));
-        
+        challanNoTextField.setText(db.getLastChallanNo() + 1 + "");
+        setCurrentDateToAllDatesFields();
         cleartable();
         
+    }
+    
+    private void setCurrentDateToAllDatesFields() {
+        deliveryDateTextField.setText(Utilities.getCurrentStadardDate());
+        challanDateTextField.setText(Utilities.getCurrentStadardDate());
+        paymentDueDateTextField.setText(Utilities.getCurrentStadardDate());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,22 +200,20 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jPanel3 = new javax.swing.JPanel();
         scrollLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        billToLabel = new javax.swing.JLabel();
+        deliveryDateLabel = new javax.swing.JLabel();
+        challanNoLabel = new javax.swing.JLabel();
+        challanDateLabel = new javax.swing.JLabel();
+        deliveryDateTextField = new javax.swing.JTextField();
+        challanNoTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        challanDateTextField = new javax.swing.JTextField();
+        paymentDueDateLabel = new javax.swing.JLabel();
+        totalAmountLabel = new javax.swing.JLabel();
         totalCostingLabel = new javax.swing.JLabel();
         grossProfitLabel = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        paymentDueDateTextField = new javax.swing.JTextField();
         totalAmountTextField = new javax.swing.JTextField();
         totalCostingTextField = new javax.swing.JTextField();
         grossProfitTextField = new javax.swing.JTextField();
@@ -295,51 +301,38 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sales Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 0, 24))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel1.setText("Bill To :");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 130, -1));
+        billToLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        billToLabel.setText("Bill To :");
+        jPanel2.add(billToLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 130, -1));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Delivery Challan No. :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, -1));
+        deliveryDateLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        deliveryDateLabel.setText("Delivery Date :");
+        jPanel2.add(deliveryDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, -1));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Delivery Date :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 130, -1));
+        challanNoLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        challanNoLabel.setText("Challan No. :");
+        jPanel2.add(challanNoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 130, -1));
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel4.setText("Invoice No. :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 130, -1));
+        challanDateLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        challanDateLabel.setText("Challan Date :");
+        jPanel2.add(challanDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 130, -1));
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setText("Invoice Date :");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 130, -1));
-
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
-            }
-        });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 180, -1));
-
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+        deliveryDateTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        deliveryDateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField2FocusLost(evt);
+                deliveryDateTextFieldFocusLost(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
+        jPanel2.add(deliveryDateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        challanNoTextField.setEditable(false);
+        challanNoTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        challanNoTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
+                challanNoTextFieldKeyReleased(evt);
             }
         });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 180, -1));
+        jPanel2.add(challanNoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 180, -1));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Save");
@@ -359,21 +352,21 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+        challanDateTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        challanDateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField4FocusLost(evt);
+                challanDateTextFieldFocusLost(evt);
             }
         });
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 180, -1));
+        jPanel2.add(challanDateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 180, -1));
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("Payment Due Date :");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 130, -1));
+        paymentDueDateLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        paymentDueDateLabel.setText("Payment Due Date :");
+        jPanel2.add(paymentDueDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 130, -1));
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel9.setText("Total Amount :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 90, 20));
+        totalAmountLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        totalAmountLabel.setText("Total Amount :");
+        jPanel2.add(totalAmountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 90, 20));
 
         totalCostingLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         totalCostingLabel.setText("Total Costing :");
@@ -383,13 +376,13 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         grossProfitLabel.setText("Gross Profit :");
         jPanel2.add(grossProfitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 90, 20));
 
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+        paymentDueDateTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        paymentDueDateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField5FocusLost(evt);
+                paymentDueDateTextFieldFocusLost(evt);
             }
         });
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 180, -1));
+        jPanel2.add(paymentDueDateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 180, -1));
 
         totalAmountTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         totalAmountTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -571,15 +564,10 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void challanNoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_challanNoTextFieldKeyReleased
         // TODO add your handling code here:
-        valid.varcharValidator(evt, jTextField1, 20);
-    }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        // TODO add your handling code here:
-        valid.integerValidator(evt, jTextField3, 6);
-    }//GEN-LAST:event_jTextField3KeyReleased
+        valid.integerValidator(evt, challanNoTextField, 6);
+    }//GEN-LAST:event_challanNoTextFieldKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -611,21 +599,21 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         Calendarium cal = new Calendarium(new JFrame());
         cal.displayDate();
-        jTextField2.setText(cal.setPickedDate());
+        deliveryDateTextField.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Calendarium cal = new Calendarium(new JFrame());
         cal.displayDate();
-        jTextField4.setText(cal.setPickedDate());
+        challanDateTextField.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Calendarium cal = new Calendarium(new JFrame());
         cal.displayDate();
-        jTextField5.setText(cal.setPickedDate());
+        paymentDueDateTextField.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -699,20 +687,20 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         
     }//GEN-LAST:event_totalAmountTextFieldMouseClicked
 
-    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+    private void deliveryDateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_deliveryDateTextFieldFocusLost
         // TODO add your handling code here:
-        valid.dateValidator(jTextField2);
-    }//GEN-LAST:event_jTextField2FocusLost
+        valid.dateValidator(deliveryDateTextField);
+    }//GEN-LAST:event_deliveryDateTextFieldFocusLost
 
-    private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+    private void challanDateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_challanDateTextFieldFocusLost
         // TODO add your handling code here:
-        valid.dateValidator(jTextField4);
-    }//GEN-LAST:event_jTextField4FocusLost
+        valid.dateValidator(challanDateTextField);
+    }//GEN-LAST:event_challanDateTextFieldFocusLost
 
-    private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
+    private void paymentDueDateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_paymentDueDateTextFieldFocusLost
         // TODO add your handling code here:
-        valid.dateValidator(jTextField5);
-    }//GEN-LAST:event_jTextField5FocusLost
+        valid.dateValidator(paymentDueDateTextField);
+    }//GEN-LAST:event_paymentDueDateTextFieldFocusLost
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
@@ -774,8 +762,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private boolean saveSales() {
         boolean flag = true;
         String bill_to = jComboBox1.getSelectedItem().toString();
-        String dc_no = jTextField1.getText();
-        String inv_no = jTextField3.getText();
+        String challanNo = challanNoTextField.getText();
         String t_amt = totalAmountTextField.getText();
         String t_costing = totalCostingTextField.getText();
         String gross_profit = grossProfitTextField.getText();
@@ -797,7 +784,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
 
         if (flag) {
-            if (jTextField2.getText().equals("") || jTextField2.getText() == null) {
+            if (deliveryDateTextField.getText().equals("") || deliveryDateTextField.getText() == null) {
                 String message1 = "Delivery_Challan Date  Should not be left empty!!";
                 JOptionPane.showMessageDialog(new JFrame(), message1,
                         "Warning", JOptionPane.WARNING_MESSAGE);
@@ -806,7 +793,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
 
         if(flag) {
-            if (jTextField4.getText().equals("") || jTextField4.getText() == null) {
+            if (challanDateTextField.getText().equals("") || challanDateTextField.getText() == null) {
                 String message1 = "Invoice_Date  Should not be left empty!!";
                 JOptionPane.showMessageDialog(new JFrame(), message1,
                         "Warning", JOptionPane.WARNING_MESSAGE);
@@ -815,7 +802,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
         
         if (flag) {
-            String dt = jTextField2.getText().toString();
+            String dt = deliveryDateTextField.getText().toString();
 
             try {
                 Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
@@ -835,7 +822,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
 
         if (flag) {
 
-            String dt = jTextField4.getText().toString();
+            String dt = challanDateTextField.getText().toString();
 
             try {
                 Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
@@ -854,8 +841,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         }
 
         if (flag) {
-            if (!(jTextField5.getText().equals(""))) {
-                String dt = jTextField5.getText().toString();
+            if (!(paymentDueDateTextField.getText().equals(""))) {
+                String dt = paymentDueDateTextField.getText().toString();
 
                 try {
                     Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
@@ -880,8 +867,9 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         if (flag) {
 
             try {
+                String inv_no = db.getLastInvNo() + 1 + "";
                 db.dbConn();
-                String sql = "INSERT INTO sales_details VALUES ('" + bill_to + "','" + dc_no + "','" + dc_date + "','" + inv_no + "','" + inv_date + "','" + due_date + "','" + t_amt + "','" + t_costing + "','" + gross_profit + "','a','" + db.getUser() + "','" + udate + "','','')";
+                String sql = "INSERT INTO sales_details VALUES ('" + bill_to + "','" + challanNo + "','" + dc_date + "','" + inv_no + "','" + inv_date + "','" + due_date + "','" + t_amt + "','" + t_costing + "','" + gross_profit + "','a','" + db.getUser() + "','" + udate + "','','')";
                 System.out.println(sql);
                 int val = db.statement.executeUpdate(sql);
                 db.dbClose();
@@ -952,6 +940,13 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewCustomerButton;
     private javax.swing.JButton addNewItemButton;
+    private javax.swing.JLabel billToLabel;
+    private javax.swing.JLabel challanDateLabel;
+    private javax.swing.JTextField challanDateTextField;
+    private javax.swing.JLabel challanNoLabel;
+    private javax.swing.JTextField challanNoTextField;
+    private javax.swing.JLabel deliveryDateLabel;
+    private javax.swing.JTextField deliveryDateTextField;
     private javax.swing.JLabel grossProfitLabel;
     private javax.swing.JTextField grossProfitTextField;
     private javax.swing.JButton jButton1;
@@ -961,15 +956,8 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -977,13 +965,11 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel paymentDueDateLabel;
+    private javax.swing.JTextField paymentDueDateTextField;
     private javax.swing.JButton printButton;
     private javax.swing.JLabel scrollLabel;
+    private javax.swing.JLabel totalAmountLabel;
     private javax.swing.JTextField totalAmountTextField;
     private javax.swing.JLabel totalCostingLabel;
     private javax.swing.JTextField totalCostingTextField;

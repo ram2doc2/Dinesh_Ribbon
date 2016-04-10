@@ -426,7 +426,7 @@ public class PrintChallan extends javax.swing.JFrame {
         while (iterator.hasNext()) {
                 challanNumberComboBox.addItem(iterator.next());
         }
-        int lastInvoiceNumber = conn.getLast_Inv_No();
+        int lastInvoiceNumber = conn.getLastInvNo();
         challanNumberComboBox.setSelectedItem(lastInvoiceNumber);
     }
     /**

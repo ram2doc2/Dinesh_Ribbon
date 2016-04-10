@@ -358,7 +358,7 @@ public class DatabaseConnection {
         return list;
     }
 
-    public int getLast_Inv_No() {
+    public int getLastInvNo() {
         dbConn();
         int invNo = 0;
         try {
@@ -376,11 +376,11 @@ public class DatabaseConnection {
 
     }
 
-    public int getLast_dc_No() {
+    public int getLastChallanNo() {
         dbConn();
         int dcNo = 0;
         try {
-            String SQLStatement = "SELECT dc_no FROM `sales_details` ORDER BY `dc_no` DESC LIMIT 1";
+            String SQLStatement = "SELECT dc_no FROM `sales_details` where inv_no = (SELECT inv_no FROM `sales_details` ORDER BY `inv_no` DESC LIMIT 1) ORDER BY `dc_no` DESC LIMIT 1";
             ResultSet rs = statement.executeQuery(SQLStatement);
             while (rs.next()) {
                 dcNo = Integer.parseInt(rs.getString("dc_no"));
