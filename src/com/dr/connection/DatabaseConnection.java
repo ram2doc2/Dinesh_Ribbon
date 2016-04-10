@@ -395,6 +395,25 @@ public class DatabaseConnection {
 
     }
 
+    public int getChallanNoByInvNo(int invNo) {
+        dbConn();
+        int dcNo = 0;
+        try {
+            String SQLStatement = "SELECT dc_no FROM `sales_details` where inv_no = "+ invNo +" ORDER BY `dc_no` DESC LIMIT 1";
+            ResultSet rs = statement.executeQuery(SQLStatement);
+            if (rs.next()) {
+                dcNo = Integer.parseInt(rs.getString("dc_no"));
+            }
+            //dcNo++;
+            dbClose();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return dcNo;
+
+    }
+
     public int getLast_pur_No() {
         dbConn();
         int purNo = 0;

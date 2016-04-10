@@ -26,6 +26,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class PrintChallan extends javax.swing.JFrame {
 
+    DatabaseConnection db=new DatabaseConnection();
     /**
      * Creates new form PrintChallan
      */
@@ -382,7 +383,8 @@ public class PrintChallan extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(PrintChallan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        challanNoTextField.setText(challanNumberComboBox.getSelectedItem().toString());
+        int dcNo = db.getChallanNoByInvNo(Integer.valueOf(challanNumberComboBox.getSelectedItem().toString()));
+        challanNoTextField.setText(dcNo+"");
         ResultSet salesItemsResultSet = conn.getItemIableByInvoiceNo(challanNumberComboBox.getSelectedItem().toString());
         itemTable.setModel(DbUtils.resultSetToTableModel(salesItemsResultSet));
         itemTable.getColumnModel().getColumn(0).setMinWidth(50);
