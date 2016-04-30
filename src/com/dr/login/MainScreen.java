@@ -25,6 +25,7 @@ import com.dr.purchase.Delete_purchase;
 import com.dr.sales.Delete_sales;
 import com.dr.purchase.Show_purchase;
 import com.dr.sales.Show_sales;
+import com.dr.utils.SystemUtils;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -918,6 +919,9 @@ public class MainScreen extends javax.swing.JFrame implements ActionListener{
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         setVisible(false);
         new Login().setVisible(true);
+//        if(SystemUtils.isWindows() && (SystemUtils.getVersion() >= 6.1f) ) {
+//            processBackup();
+//        }
     }//GEN-LAST:event_logoutActionPerformed
 
     private void backUpAndLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpAndLogoutActionPerformed
