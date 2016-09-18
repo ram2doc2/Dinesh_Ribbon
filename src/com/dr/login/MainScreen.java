@@ -14,7 +14,7 @@ import com.dr.amount.Add_Amount_paid;
 import com.dr.amount.Add_Amount_received;
 import com.dr.amount.Show_amt_paid;
 import com.dr.amount.Show_amt_received;
-import com.dr.challan.PrintChallan;
+import com.dr.print.PrintChallan;
 import com.dr.connection.DatabaseConnection;
 import com.dr.cutomerDetails.Add_Customer_entry;
 import com.dr.items.Add_Items;

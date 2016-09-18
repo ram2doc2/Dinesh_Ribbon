@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dr.challan;
+package com.dr.print;
 
 import com.dr.connection.DatabaseConnection;
 import com.dr.login.MainScreen;
@@ -344,6 +344,7 @@ public class PrintChallan extends javax.swing.JFrame {
         menuButton.setVisible(false);
         PrintUtilities.printComponent(this);
         printButton.setVisible(true);
+        challanNumberComboBox.setVisible(true);
         menuButton.setVisible(true);
     }//GEN-LAST:event_printButtonActionPerformed
 
@@ -358,16 +359,18 @@ public class PrintChallan extends javax.swing.JFrame {
 
     private void challanNumberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_challanNumberComboBoxActionPerformed
        DatabaseConnection conn = new DatabaseConnection();
+        String inv_no = "";
         String customerName = "";
         DateFormat databaseFormat = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat showFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date = new Date().toString();
-        ResultSet salesDetailsResultSet = conn.getSalesDetailsByInvoiceNo(challanNumberComboBox.getSelectedItem().toString());
+        ResultSet salesDetailsResultSet = conn.getSalesDetailsByChallanNo(challanNumberComboBox.getSelectedItem().toString());
         if(salesDetailsResultSet != null) {
             try {
                 while(salesDetailsResultSet.next()) {
                     customerName = salesDetailsResultSet.getString("bill_to");
                     date = salesDetailsResultSet.getString("Inv_date");
+                    inv_no = salesDetailsResultSet.getString("inv_no");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(PrintChallan.class.getName()).log(Level.SEVERE, null, ex);
@@ -383,9 +386,9 @@ public class PrintChallan extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(PrintChallan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int dcNo = db.getChallanNoByInvNo(Integer.valueOf(challanNumberComboBox.getSelectedItem().toString()));
-        challanNoTextField.setText(dcNo+"");
-        ResultSet salesItemsResultSet = conn.getItemIableByInvoiceNo(challanNumberComboBox.getSelectedItem().toString());
+        //int dcNo = db.getChallanNoByInvNo(Integer.valueOf(challanNumberComboBox.getSelectedItem().toString()));
+        challanNoTextField.setText(challanNumberComboBox.getSelectedItem().toString());
+        ResultSet salesItemsResultSet = conn.getItemIableByInvoiceNo(inv_no);
         itemTable.setModel(DbUtils.resultSetToTableModel(salesItemsResultSet));
         itemTable.getColumnModel().getColumn(0).setMinWidth(50);
         itemTable.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -424,12 +427,12 @@ public class PrintChallan extends javax.swing.JFrame {
 
     private void populateChallanNumberComboBox() {
         DatabaseConnection conn = new DatabaseConnection();
-        Iterator<String> iterator = conn.getInvoiceNo().iterator();
+        Iterator<String> iterator = conn.getCurrentYearDcNo().iterator();
         while (iterator.hasNext()) {
                 challanNumberComboBox.addItem(iterator.next());
         }
-        int lastInvoiceNumber = conn.getLastInvNo();
-        challanNumberComboBox.setSelectedItem(lastInvoiceNumber);
+        int lastChallanNumber = conn.getLastChallanNo();
+        challanNumberComboBox.setSelectedItem(lastChallanNumber);
     }
     /**
      * @param args the command line arguments

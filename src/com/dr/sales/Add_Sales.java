@@ -4,7 +4,7 @@
  */
 package com.dr.sales;
 
-import com.dr.challan.PrintChallan;
+import com.dr.print.PrintChallan;
 import com.dr.login.MainScreen;
 import com.dr.connection.DatabaseConnection;
 import com.dr.cutomerDetails.Add_Customer_entry;
@@ -57,7 +57,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
         
         int dcNo  = db.getLastChallanNo();
         Calendar cal = Calendar.getInstance();
-        if(cal.get(Calendar.MONTH) == 3 && cal.get(Calendar.DATE) < 10 && dcNo > 60) {
+        if(cal.get(Calendar.MONTH) == 3 && cal.get(Calendar.DATE) < 10 && dcNo > 70) {
             challanNoTextField.setText("1");
         } else {
             challanNoTextField.setText(dcNo + 1 + "");
@@ -822,7 +822,7 @@ public class Add_Sales extends javax.swing.JFrame implements ActionListener{
 
         if (flag) {
 
-            String dt = challanDateTextField.getText().toString();
+            String dt = challanDateTextField.getText();
 
             try {
                 Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);

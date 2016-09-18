@@ -6,6 +6,7 @@ package com.dr.sales;
 
 import com.dr.connection.DatabaseConnection;
 import com.dr.login.MainScreen;
+import com.dr.print.PrintPartywiseSalesDetails;
 import com.dr.utils.Calendarium;
 import com.dr.utils.Validation;
 import java.awt.event.ActionEvent;
@@ -63,8 +64,8 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     }
 
     public void cleartext() {
-        jTextField1.setText("");
-        jTextField2.setText("");
+        fromDateTextField.setText("");
+        toDateTextField.setText("");
         totalAmountTextField.setText("");
         cleartable();
 
@@ -87,8 +88,8 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         jPanel3 = new javax.swing.JPanel();
         scrollLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        fromDateTextField = new javax.swing.JTextField();
+        toDateTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -105,6 +106,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         grossProfitLabel = new javax.swing.JLabel();
         totalCostTextField = new javax.swing.JTextField();
         grossProfitTextField5 = new javax.swing.JTextField();
+        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sales View");
@@ -179,11 +181,11 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sales View", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 0, 24))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 150, -1));
+        fromDateTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(fromDateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 150, -1));
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 150, -1));
+        toDateTextField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jPanel2.add(toDateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 150, -1));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("Clear");
@@ -314,6 +316,15 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         grossProfitTextField5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jPanel2.add(grossProfitTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 150, -1));
 
+        printButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -361,14 +372,14 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
         Calendarium cal = new Calendarium(new JFrame());
         cal.displayDate();
-        jTextField1.setText(cal.setPickedDate());
+        fromDateTextField.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Calendarium cal = new Calendarium(new JFrame());
         cal.displayDate();
-        jTextField2.setText(cal.setPickedDate());
+        toDateTextField.setText(cal.setPickedDate());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void totalAmountTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalAmountTextFieldMouseClicked
@@ -382,7 +393,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         String t_date = null;
 
         if (Flag == false) {
-            if (jTextField1.getText().equals("") || jTextField1.getText() == null) {
+            if (fromDateTextField.getText().equals("") || fromDateTextField.getText() == null) {
                 String message1 = "From date: Should not be left empty!!";
                 JOptionPane.showMessageDialog(new JFrame(), message1,
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -393,7 +404,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         }
 
         if (Flag == false) {
-            if (jTextField2.getText().equals("") || jTextField2.getText() == null) {
+            if (toDateTextField.getText().equals("") || toDateTextField.getText() == null) {
                 String message1 = "To Date: Should not be left empty!!";
                 JOptionPane.showMessageDialog(new JFrame(), message1,
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -404,7 +415,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         }
 
         if (Flag == false) {
-            String dt = jTextField1.getText().toString();
+            String dt = fromDateTextField.getText().toString();
 
             try {
                 Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
@@ -423,7 +434,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         }
 
         if (Flag == false) {
-            String dt = jTextField2.getText().toString();
+            String dt = toDateTextField.getText().toString();
 
             try {
                 Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(dt);
@@ -475,6 +486,14 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
         setVisible(false);
         ss.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+
+        PrintPartywiseSalesDetails printPartywiseSalesDetails = new PrintPartywiseSalesDetails(CustomerNameComboBox.getSelectedItem().toString(), fromDateTextField.getText(), toDateTextField.getText());
+        this.setVisible(false);
+        printPartywiseSalesDetails.setVisible(true);
+
+    }//GEN-LAST:event_printButtonActionPerformed
     private void populateCustomerNameComboBox() {
         DatabaseConnection conn = new DatabaseConnection();
         Iterator<String> iterator = conn.getCustomerNameFromSaleDetails().iterator();
@@ -538,6 +557,7 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CustomerNameComboBox;
     private javax.swing.JButton ShowButton;
+    private javax.swing.JTextField fromDateTextField;
     private javax.swing.JLabel grossProfitLabel;
     private javax.swing.JTextField grossProfitTextField5;
     private javax.swing.JButton jButton2;
@@ -556,9 +576,9 @@ public class Show_sales extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton printButton;
     private javax.swing.JLabel scrollLabel;
+    private javax.swing.JTextField toDateTextField;
     private javax.swing.JTextField totalAmountTextField;
     private javax.swing.JLabel totalCostLabel;
     private javax.swing.JTextField totalCostTextField;

@@ -259,7 +259,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             setVisible(false);
 
         }else{
-            jTextField1.setText("");
+            //jTextField1.setText("");
             jPasswordField1.setText("");
             setVisible(true);
         }

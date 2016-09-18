@@ -6,7 +6,9 @@
 package com.dr.utils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -23,5 +25,23 @@ public class Utilities {
         Date date = new Date();
         DateFormat showFormat = new SimpleDateFormat(format);
         return showFormat.format(date);
+    }
+    
+    /**
+     * Financial year according to current date & time.
+     * 
+     * @return comma separated years, e.g 2016, 2017
+     */
+    public static String getCurrentFinancialYear() {
+        Calendar cal = Calendar.getInstance();
+        int currentYear = cal.get(Calendar.YEAR);
+        int fiscalYear = cal.get(Calendar.MONTH) < 3 ? currentYear - 1 : currentYear; 
+        System.out.println("Financial Year : " + fiscalYear + "," + (fiscalYear + 1));
+        
+        return fiscalYear + "," + (fiscalYear + 1);
+    }
+    
+    public static void main(String[] args) throws ParseException {
+        getCurrentFinancialYear();
     }
 }

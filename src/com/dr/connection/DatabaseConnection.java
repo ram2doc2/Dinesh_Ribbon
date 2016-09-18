@@ -5,6 +5,7 @@
 package com.dr.connection;
 
 import com.dr.login.MainScreen;
+import com.dr.utils.Utilities;
 import com.mysql.jdbc.MysqlDataTruncation;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,6 +49,9 @@ public class DatabaseConnection {
     private static String user_name;
     SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    private final String[] financialYears = Utilities.getCurrentFinancialYear().split(",");
+    public final String fiscalFromDate = financialYears[0] + "-04-01";
+    public final String fiscalToDate = financialYears[1] + "-03-31";
     /* Open MySQL database connection
      */
     public Connection dbConn() {
@@ -562,6 +566,26 @@ public class DatabaseConnection {
         }
         return list;
     }
+    
+    public ArrayList getCurrentYearDcNo() {
+        ArrayList list = new ArrayList();
+        try {
+            
+            String SQLStatement = "SELECT dc_no FROM sales_details where inv_date BETWEEN '" + fiscalFromDate + "' AND '" + fiscalToDate + "' ORDER BY dc_no DESC";
+            dbConn();
+            ResultSet rs = statement.executeQuery(SQLStatement);
+            while (rs.next()) {
+
+                list.add(rs.getInt("dc_no"));
+            }
+            //close all database connections
+            dbClose();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return list;
+    }
 
     public ArrayList getPurNo() {
         ArrayList list = new ArrayList();
@@ -584,10 +608,11 @@ public class DatabaseConnection {
         return list;
     }
     
-    public ResultSet getSalesDetailsByInvoiceNo(String invoiceNo) {
+    public ResultSet getSalesDetailsByChallanNo(String dcNo) {
         ResultSet resultSet = null;
+        
         try {
-            String SQLStatement = "SELECT * FROM sales_details Where inv_no='"+invoiceNo+"'";
+            String SQLStatement = "SELECT * FROM sales_details Where dc_no='"+dcNo+"' AND inv_date BETWEEN '" + fiscalFromDate + "' AND '" + fiscalToDate + "'";
             dbConn();
             resultSet = statement.executeQuery(SQLStatement);
         } catch (SQLException sqle) {
